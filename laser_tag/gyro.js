@@ -17,6 +17,24 @@
       // Error if the browser doesn't support device orientation
     });
 
+    function getData() {
+        var xmlReq = new XMLHttpRequest();
+
+        function processReq(e) {
+            if (xmlReq.readyState == 4) {
+                var message = xmlReq.responseText;
+                //Do something
+            }
+        }
+
+        xmlReq.addEventListener("GETupdate", processReq);
+        xmlReq.open("GET", /*"https://example.com/something"*/);
+        xmlReq.onreadystatechange = processReq;
+
+    }
+
+    setInterval(getData, 1000);
+
     function buttonClick() {
         getLocation();
         //TODO: Send location and orientation to server
@@ -32,10 +50,6 @@
         sendReq.setRequestHeader("Longitude", long);
         sendReq.setRequestHeader("Latitude", lat);
         sendReq.send();
-
-        function recListener() {
-
-        }
 
 
     }
