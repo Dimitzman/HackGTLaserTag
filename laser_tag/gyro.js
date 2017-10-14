@@ -6,7 +6,6 @@
     var b = 0;
     var lat = 0;
     var long = 0;
-    var xhr = new XMLHttpRequest(); // use this later
 
     gn.init().then(function(){
       gn.start(function(data){
@@ -21,10 +20,28 @@
     function buttonClick() {
         getLocation();
         //TODO: Send location and orientation to server
+        function sendListener() {
+
+        }
+
+        var sendReq = new XMLHttpRequest();
+        sendReq.addEventListener("sendingLocation", sendListener);
+        sendReq.open("POST", /*"https://example.com/something"*/);
+        sendReq.setRequestHeader("Alpha", a);
+        sendReq.setRequestHeader("Beta", b);
+        sendReq.setRequestHeader("Longitude", long);
+        sendReq.setRequestHeader("Latitude", lat);
+        sendReq.send();
+
+        function recListener() {
+
+        }
+
+
     }
 
     function getLocation() {
-        if (navigator.geolocation) {
+        if (navigator.geolocation) { //Tests if the object exists
             navigator.geolocation.getCurrentPostion(setPosition);
         } else {
             alert("Geolocation services not suppported by this browser version");
