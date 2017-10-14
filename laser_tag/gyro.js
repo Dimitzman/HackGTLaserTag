@@ -6,6 +6,24 @@
     var b = 0;
     var lat = 0;
     var long = 0;
+    var ID = 0;
+
+    function IDrequest() {
+      var xmlReq = new XMLHttpRequest();
+
+        function processReq(e) {
+            if (xmlReq.readyState == 4) {
+                var message = xmlReq.responseText;
+                ID = parseInt(message);
+            }
+        }
+
+        xmlReq.addEventListener("GETupdate", processReq);
+        xmlReq.open("GET", "localhost");
+        xmlReq.onreadystatechange = processReq;
+    }
+
+    ID = IDrequest();
 
     gn.init().then(function(){
       gn.start(function(data){
@@ -28,7 +46,7 @@
         }
 
         xmlReq.addEventListener("GETupdate", processReq);
-        xmlReq.open("GET", /*"https://example.com/something"*/);
+        xmlReq.open("GET", "localhost");
         xmlReq.onreadystatechange = processReq;
 
     }
@@ -44,7 +62,7 @@
 
         var sendReq = new XMLHttpRequest();
         sendReq.addEventListener("sendingLocation", sendListener);
-        sendReq.open("POST", /*"https://example.com/something"*/);
+        sendReq.open("POST", "localhost");
         sendReq.setRequestHeader("Alpha", a);
         sendReq.setRequestHeader("Beta", b);
         sendReq.setRequestHeader("Longitude", long);
