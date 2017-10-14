@@ -1,0 +1,8 @@
+{% block main %}
+<form action=""  method="POST" enctype="multipart/form-data" name="Number">
+    {% csrf_token %}
+    <p>Name:</p>
+    <p><input type="text" value = "" name = "Name"></p>
+    <p><input type="submit" class="btn-xs" value="Save Name" name="save_name" /></p>
+</form>
+{% endblock %}
