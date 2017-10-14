@@ -1,4 +1,6 @@
+import json
 from django.db import models
+from channels import Group
 class User(models.Model):
     Name = models.CharField(max_length=30)
     ID = models.IntegerField(default = 0)
